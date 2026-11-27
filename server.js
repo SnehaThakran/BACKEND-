@@ -1,43 +1,23 @@
-//const sum = require('./math.js');
+import http from "http"
 
-//import sum from './math.js'
-//console.log(sum(10,2));
-//console.log(divide(20,5));
-//import os from 'os';
-//import path from 'path';
+const server = http.createServer((req, res) => {
+    if (req.url === "/" && req.method === "GET") {
+        res.end("<h1>Welcome to Backend Development</h1>")
+    }else if (req.url === "/about" && req.method === "GET") {
+        res.end(JSON.stringify({
+            message: "This is about page"
+        }))
+    }else if (req.url === "/contact" && req.method === "GET") {
+        res.end("<h1>This is contact page</h1>")
+    }else if (req.url === "/home" && req.method === "GET") {
+        res.end("<h1>This is home page</h1>")
+    }else {
+        res.end("<h1>404 page not found</h1>")
+    }
+})
 
-// console.log(os.totalmem()/1024/1024/1024);
-// console.log(os.cpus());
-// console.log(os.arch());
-// console.log(os.uptime()/60/60);
+const PORT = 3000
 
-// console.log(path.basename('./parent/child.js'));
-// console.log(path.dirname('./parent/child.js'));
-// let newPath = path.join('parent','child.js');
-// console.log(newPath)
-
-//console.log(path.sep);
-
-// import fs from 'fs'
-
-// fs.mkdir('./parent/child',(err)=>{
-//     if (err){
-//         console.log(err)
-//         return
-//     }
-// })
-
-// import dns from 'dns'
-// dns.lookup('facebook.com',(err,address)=>{
-//     if(err){
-//         console.log(err)
-//     }
-// })
-
- import crypto from 'crypto'
-
-// let password = '123456'
-
-// let hashpassword = crypto.createHash('sha256').update(password).digest('hex')
-
-// console.log(hashpassword)
+server.listen(PORT, () => {
+    console.log("server is created ",PORT)
+})
